@@ -1,0 +1,24 @@
+%h2 All Movies
+%table#movies
+  %thead
+    %tr
+      %th #
+      %th Movie Title
+      %th Rating
+      %th Release Date
+      %th More Info
+      %th Edit
+      %th Delete
+  %tbody
+    - @movies.each_with_index do |movie, index|
+      %tr
+        %td= index
+        %td= movie.title
+        %td= movie.rating
+        %td= movie.release_date
+        %td= link_to "More about #{movie.title}", movie_path(movie)
+        %td= link_to 'Edit info', edit_movie_path(movie)
+        %td= button_to 'Delete', movie_path(movie), :method => :delete, :confirm => 'Are your sure you want to delete the movie #{movie}'
+
+
+= link_to 'Add new movie', new_movie_path
