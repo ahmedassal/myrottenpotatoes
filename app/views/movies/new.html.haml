@@ -11,6 +11,9 @@
   =label :movie, :release_date, 'Released on'
   =date_select :movie, :release_date, :start_year => 1930
 
+  =label :movie, :description, 'Description'
+  =text_field :movie, :description
+
   =submit_tag 'Save Changes', :type => 'submit', :name=> 'submit'
   =button_tag 'Cancel', :type => 'cancel', :name=> 'cancel'
 

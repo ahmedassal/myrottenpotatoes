@@ -9,7 +9,16 @@ class MoviesController < ApplicationController
 
   def show
     id = params[:id]
-    @movie = Movie.find_by_id(id)
+    begin
+      @movie = Movie.find(id)
+    rescue ActiveRecord::RecordNotFound
+      flash[:notice] = "id no. #{id} was not found!"
+      flash[:color]= "invalid"
+      redirect_to movies_path
+    end
+
+
+
   end
 
   def new
@@ -60,7 +69,7 @@ class MoviesController < ApplicationController
 
   private
   def movie_params
-    params.require(:movie).permit(:title, :rating, :release_date)
+    params.require(:movie).permit(:title, :rating, :release_date, :description)
   end
 
   def check_for_create_cancel
